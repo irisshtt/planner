@@ -5,106 +5,126 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <style>
-*{
-  box-sizing:border-box;
-}
+*{box-sizing:border-box;}
 
 body{
   margin:0;
-  background:#e5e5e5;
-  font-family: Georgia, serif;
+  background:#ffffff;
   height:100vh;
   width:100vw;
+  font-family:"Times New Roman", Times, serif;
 }
 
 .grid{
   display:grid;
   width:100%;
   height:100%;
-  grid-template-columns:repeat(4, 1fr);
+  grid-template-columns:repeat(5,1fr); /* ← ahora 5 columnas */
   grid-auto-rows:1fr;
 }
 
 .cell{
-  border:1px solid #cfcfcf;
+  border:1px solid #e3e3e3;
   display:flex;
   align-items:center;
   justify-content:center;
   text-align:center;
-  font-size:clamp(10px, 1.5vw, 22px);
-  cursor:pointer;
-  transition:0.2s ease;
-  padding:4px;
-}
-
-.cell:hover{
-  background:rgba(0,0,0,0.05);
+  font-size:clamp(12px,1.6vw,22px);
+  color:#333;
+  letter-spacing:0.5px;
 }
 </style>
 </head>
 
 <body>
 
-<div class="grid" id="grid"></div>
+<div class="grid">
 
-<script>
-const rows = 14;   // puedes cambiar cantidad de filas
-const cols = 4;
+  <!-- FILA 1 -->
+  <div class="cell"></div>
+  <div class="cell" style="background:#e0e0e0;">I1-C</div>
+  <div class="cell"></div> <!-- NUEVA COLUMNA -->
+  <div class="cell"></div>
+  <div class="cell" style="background:#e9e1f5;">P2-C</div>
 
-const grid = document.getElementById("grid");
+  <!-- FILA 2 -->
+  <div class="cell"></div>
+  <div class="cell" style="background:#e0e0e0;">I1-C</div>
+  <div class="cell"></div>
+  <div class="cell"></div>
+  <div class="cell" style="background:#e9e1f5;">P2-C</div>
 
-function loadData(){
-  const saved = localStorage.getItem("scheduleGrid");
-  return saved ? JSON.parse(saved) : [];
-}
+  <!-- FILA 3 -->
+  <div class="cell"></div>
+  <div class="cell" style="background:#e0e0e0;">I1-C</div>
+  <div class="cell"></div>
+  <div class="cell"></div>
+  <div class="cell" style="background:#e9e1f5;">P2-C</div>
 
-function saveData(data){
-  localStorage.setItem("scheduleGrid", JSON.stringify(data));
-}
+  <!-- FILA 4 -->
+  <div class="cell"></div>
+  <div class="cell" style="background:#eadede;">I2-C</div>
+  <div class="cell"></div>
+  <div class="cell"></div>
+  <div class="cell" style="background:#e9e1f5;">P2-C</div>
 
-let data = loadData();
+  <!-- FILA 5 -->
+  <div class="cell"></div>
+  <div class="cell" style="background:#eadede;">I2-C</div>
+  <div class="cell"></div>
+  <div class="cell"></div>
+  <div class="cell" style="background:#e9e1f5;">P2-A</div>
 
-function createGrid(){
-  for(let i=0;i<rows*cols;i++){
+  <!-- FILA 6 -->
+  <div class="cell"></div>
+  <div class="cell" style="background:#eadede;">I2-C</div>
+  <div class="cell"></div>
+  <div class="cell"></div>
+  <div class="cell" style="background:#e9e1f5;">P2-A</div>
 
-    if(!data[i]){
-      data[i] = {
-        text:"",
-        color:"transparent"
-      };
-    }
+  <!-- FILA 7 -->
+  <div class="cell"></div>
+  <div class="cell" style="background:#dde8f1;">P1-C</div>
+  <div class="cell"></div>
+  <div class="cell" style="background:#f0e4e4;">P-C</div>
+  <div class="cell"></div>
 
-    const cell = document.createElement("div");
-    cell.classList.add("cell");
-    cell.textContent = data[i].text;
-    cell.style.background = data[i].color;
+  <!-- FILA 8 -->
+  <div class="cell"></div>
+  <div class="cell" style="background:#dde8f1;">P1-C</div>
+  <div class="cell"></div>
+  <div class="cell" style="background:#f0e4e4;">P-C</div>
+  <div class="cell"></div>
 
-    cell.addEventListener("click",()=>{
-      
-      const newText = prompt("Editar texto:", data[i].text);
-      if(newText !== null){
-        data[i].text = newText;
-      }
+  <!-- FILA 9 -->
+  <div class="cell"></div>
+  <div class="cell" style="background:#e5e5e5;">C-C</div>
+  <div class="cell"></div>
+  <div class="cell" style="background:#f0e4e4;">P-C</div>
+  <div class="cell"></div>
 
-      const newColor = prompt("Color (ej: #d8c8ff o lavender):", data[i].color);
-      if(newColor !== null){
-        data[i].color = newColor;
-      }
+  <!-- FILA 10 -->
+  <div class="cell"></div>
+  <div class="cell" style="background:#e5e5e5;">C-C</div>
+  <div class="cell"></div>
+  <div class="cell"></div>
+  <div class="cell"></div>
 
-      cell.textContent = data[i].text;
-      cell.style.background = data[i].color;
+  <!-- FILA 11 -->
+  <div class="cell"></div>
+  <div class="cell" style="background:#d7e6f5;">P1-A</div>
+  <div class="cell"></div>
+  <div class="cell"></div>
+  <div class="cell"></div>
 
-      saveData(data);
-    });
+  <!-- FILA 12 -->
+  <div class="cell"></div>
+  <div class="cell" style="background:#d7e6f5;">P1-A</div>
+  <div class="cell"></div>
+  <div class="cell"></div>
+  <div class="cell"></div>
 
-    grid.appendChild(cell);
-  }
-
-  saveData(data);
-}
-
-createGrid();
-</script>
+</div>
 
 </body>
 </html>
